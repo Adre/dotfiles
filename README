@@ -1,0 +1,2 @@
+convert home directory into a git repository (git init)
+create a .gitignore file to isolate only the files that need to be backed up

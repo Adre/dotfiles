@@ -1,0 +1,23 @@
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/usr/local/git/bin:$PATH"
+alias ls="ls -la"
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
+export MANPATH=$MANPATH:/opt/local/share/man:/usr/local/git/man
+export INFOPATH=$INFOPATH:/opt/local/share/info
+export LC_CTYPE=en_US.UTF-8
+export EDITOR='mate -w'
+export SVN_EDITOR='mate -w'
+
+parse_git_branch() {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+prompter() {
+	local RED="\[\033[0;31m\]"
+	local BLUE="\[\033[0;34m\]"
+	local CYAN="\[\033[0;36m\]"
+	local NORM="\[\033[0m\]"
+
+	PS1="\u:$NORM\w $CYAN\$(parse_git_branch)$NORM\$ "
+}
+
+prompter
